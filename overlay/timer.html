@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/feather-icons"></script>
+    <title>Timer</title>
+    <style>
+      * {
+        margin: 0;
+        outline: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-size: 62.5%;
+        height: 100vh;
+        width: 100vw;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-family: "Poppins", sans-serif;
+      }
+
+      .timer {
+        width: 220px;
+        background: transparent;
+        padding: 12px 24px;
+        border-radius: 8px;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #timer {
+        font-size: 64px;
+        color: #efefef;
+        margin: 0 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="timer">
+      <span id="timer"></span>
+    </div>
+
+    <script>
+      time = 3;
+
+      display = document.getElementById("timer");
+      display.innerText = "3:00";
+
+      startTimer(time * 60, display);
+
+      function startTimer(duration, display) {
+        let timer = duration,
+          minutes,
+          seconds;
+        setInterval(function () {
+          minutes = parseInt(timer / 60, 10);
+          seconds = parseInt(timer % 60, 10);
+
+          minutes = minutes < 10 ? minutes : minutes;
+          seconds = seconds < 10 ? "0" + seconds : seconds;
+
+          display.innerText = minutes + ":" + seconds;
+
+          if (--timer < 0) {
+            timer = duration;
+          }
+        }, 1000);
+      }
+    </script>
+  </body>
+</html>
