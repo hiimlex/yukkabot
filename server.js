@@ -1,6 +1,34 @@
 const tmi = require("tmi.js");
 require("dotenv").config();
 
+// const http = require("http");
+
+// const options = {
+//   hostname: "https://accounts.spotify.com/api/token",
+//   method: "POST",
+//   headers: {
+//     "Content-Type": "application/x-www-form-urlencoded",
+//     Authorization: "Basic " + base64(clientID) + ":" + base64(clientSecret),
+//   },
+// };
+
+// const req = http.request(options, (res) => {
+//   res.setEncoding("utf8");
+//   // process the data bit by bit or in chunks...
+//   res.on("data", (chunk) => {});
+//   // ...and do something with it when there is no more data in response
+//   res.on("end", () => {
+//     console.log("No more data in response.");
+//   });
+// });
+
+// // handle the error explicitly
+// req.on("error", (e) => {
+//   console.error(`problem with request: ${e.message}`);
+// });
+
+// req.end();
+
 const opts = {
   identity: {
     username: process.env.BOT_USERNAME,
@@ -22,6 +50,10 @@ const commands = [
   "!add",
   "!yukka",
   "!lesado",
+  "!editor",
+  "!vscode",
+  "!extensoes",
+  "!cafe",
   "!comandos",
 ];
 
@@ -36,6 +68,21 @@ function onMessageHandler(target, context, msg, self) {
   switch (commandName) {
     case "!mod":
       client.say(target, `Já deu amor aos mods hoje ? <3`);
+      return;
+    case "!editor":
+      client.say(target, `VSCode <3 ou Sublime(para quem ta começando) :p`);
+      return;
+    case "!extensoes":
+      client.say(
+        target,
+        `Bracket Pair Colorizer 💅, Cobalt Next 🎨, EditorConfig 🧾, Live Server 🖥, Prettier 🤝, Color Highlight 🎨. `
+      );
+      return;
+    case "!vscode":
+      client.say(
+        target,
+        `Minhas configurações do VSCODE: http://dontpad.com/yunovscodeconfigdontchange 👌`
+      );
       return;
     case "!yukka":
       f++;
@@ -85,6 +132,12 @@ function onMessageHandler(target, context, msg, self) {
         target,
         `/me ${args.join(" ")} foi sugerido por: ${context.username}.`
       );
+      return;
+    case "!cafe":
+      client.say(target, `Vamo tomar um café ? 3 minutinhos ☕.`);
+      setTimeout(() => {
+        client.say(target, `Voltamo 😎😎😎`);
+      }, 3 * 60000);
       return;
     case "!portfolio":
       client.say(
