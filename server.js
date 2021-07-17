@@ -1,34 +1,6 @@
 const tmi = require("tmi.js");
 require("dotenv").config();
 
-// const http = require("http");
-
-// const options = {
-//   hostname: "https://accounts.spotify.com/api/token",
-//   method: "POST",
-//   headers: {
-//     "Content-Type": "application/x-www-form-urlencoded",
-//     Authorization: "Basic " + base64(clientID) + ":" + base64(clientSecret),
-//   },
-// };
-
-// const req = http.request(options, (res) => {
-//   res.setEncoding("utf8");
-//   // process the data bit by bit or in chunks...
-//   res.on("data", (chunk) => {});
-//   // ...and do something with it when there is no more data in response
-//   res.on("end", () => {
-//     console.log("No more data in response.");
-//   });
-// });
-
-// // handle the error explicitly
-// req.on("error", (e) => {
-//   console.error(`problem with request: ${e.message}`);
-// });
-
-// req.end();
-
 const opts = {
   identity: {
     username: process.env.BOT_USERNAME,
@@ -43,17 +15,19 @@ let f = 0;
 const commands = [
   "!me",
   "!git",
+  "!yukka",
+  "!agua",
+  "!cafe",
+  "!sociais",
+  "!lesado",
   "!portfolio",
   "!playlist",
   "!sugestao",
-  "!sociais",
   "!add",
-  "!yukka",
-  "!lesado",
   "!editor",
   "!vscode",
+  "!mod",
   "!extensoes",
-  "!cafe",
   "!comandos",
 ];
 
@@ -66,6 +40,9 @@ function onMessageHandler(target, context, msg, self) {
   const args = msg.slice(1).split(" ");
 
   switch (commandName) {
+    case "!agua":
+      client.say(target, `Respira e toma água NotLikeThis`);
+      return;
     case "!mod":
       client.say(target, `Já deu amor aos mods hoje ? <3`);
       return;

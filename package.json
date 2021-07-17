@@ -1,0 +1,37 @@
+{
+  "name": "yukka",
+  "version": "1.0.0",
+  "description": "TODO",
+  "main": "server.js",
+  "engines": {
+    "node": "v14.15.1"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "btoa": "^1.2.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.12",
+    "tmi.js": "^1.8.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hiimlex/twitch-overlay.git"
+  },
+  "keywords": [
+    "yukka",
+    "heroku",
+    "twitchbot"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hiimlex/twitch-overlay/issues"
+  },
+  "homepage": "https://github.com/hiimlex/twitch-overlay#readme"
+}
