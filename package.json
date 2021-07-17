@@ -10,13 +10,15 @@
     "axios": "^0.21.1",
     "btoa": "^1.2.1",
     "dotenv": "^10.0.0",
-    "nodemon": "^2.0.12",
     "tmi.js": "^1.8.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
   },
   "repository": {
     "type": "git",
