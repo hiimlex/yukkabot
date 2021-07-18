@@ -1,3 +1,4 @@
+// Todo: turns into object and refers the key and value on handleCommand call
 const commands = [
   "!me",
   "!git",
@@ -20,7 +21,7 @@ const commands = [
 let lesado = 0;
 let f = 0;
 
-function handleCommand(command, subject) {
+function handleCommand(command) {
   const defaultMsg = `Não entendi o que você quis dizer, digite !comandos. VoHiYo .`;
 
   if (!commands.includes(command)) {
@@ -43,14 +44,11 @@ function handleCommand(command, subject) {
         f++;
         return `O yuno matou a Yukka ${f} ${f > 1 ? "vezes" : "vez"} hoje. D:`;
       case "!lesado":
-        if (subject) {
-          lesado++;
-          subject.shift();
+        lesado++;
 
-          return `O yuno foi lesado mais de  ${lesado} ${
-            lesado > 1 ? "vezes" : "vez"
-          }   NotLikeThis `;
-        } else return;
+        return `O yuno foi lesado mais de  ${lesado} ${
+          lesado > 1 ? "vezes" : "vez"
+        } `;
       case "!me":
         return `HeyGuys Aoba, eu sou o yuno ou álex, programador de programas e tocador de tocagens.`;
       case "!playlist":
@@ -59,12 +57,6 @@ function handleCommand(command, subject) {
         return `👨‍💻 LinkedIn: https://www.linkedin.com/in/alex-rodrigues-83558718b/`;
       case "!sugestao":
         return `Para sugerir algo para a Yukka AYAYA didite !add <sugestão>.`;
-      case "!add":
-        if (subject) {
-          args.shift();
-
-          return `/me ${args.join(" ")} foi sugerido por: ${context.username}.`;
-        } else return defaultMsg;
       case "!cafe":
         return `Vamo tomar um café ? 3 minutinhos ☕.`;
       case "!portfolio":

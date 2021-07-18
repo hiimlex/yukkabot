@@ -11,6 +11,8 @@ const opts = {
   channels: [process.env.CHANNEL_NAME],
 };
 
+const suggestions = [];
+
 function onMessageHandler(target, context, msg, self) {
   if (self || !msg.startsWith("!")) {
     return;
@@ -18,6 +20,13 @@ function onMessageHandler(target, context, msg, self) {
 
   const commandName = msg.split(" ")[0];
   const args = msg.slice(1).split(" ");
+
+  if (commandName === "add") {
+    args.shift();
+
+    client.say(`/me ${args.join(" ")} foi sugerido por: ${context.username}.`);
+    return;
+  }
 
   if (commandName === "cafe") {
     setTimeout(() => {
