@@ -8,3 +8,5 @@ TODO
 - Adicionar uptime e followage
 - Conectar com twitch api pra pegar dados de lá
 - Comando pra sugerir música para playlist r&&b
+
+worker: node src/server.js
