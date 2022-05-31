@@ -12,7 +12,7 @@ const opts = {
     password: process.env.OAUTH_TOKEN,
   },
   channels: [process.env.CHANNEL_NAME],
-  port: process.env.PORT
+  port: process.env.PORT || 80
 };
 
 const suggestions = [];
