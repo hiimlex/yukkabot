@@ -4,11 +4,15 @@ require("dotenv").config();
 const commands = require("./commands");
 
 const opts = {
+  options: {
+    debug: true
+  },
   identity: {
     username: process.env.BOT_USERNAME,
     password: process.env.OAUTH_TOKEN,
   },
   channels: [process.env.CHANNEL_NAME],
+  port: process.env.PORT
 };
 
 const suggestions = [];
