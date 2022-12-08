@@ -1,81 +1,60 @@
 // Todo: turns into object and refers the key and value on handleCommand call
-const commands = [
-  "!me",
-  "!git",
-  "!yukka",
-  "!agua",
-  "!cafe",
-  "!sociais",
-  "!lesado",
-  "!portfolio",
-  "!playlist",
-  "!sugestao",
-  "!add",
-  "!editor",
-  "!vscode",
-  "!mod",
-  "!extensoes",
-  "!comandos",
+const COMMANDS = [
+	"water",
+	"coffee",
+	"mod",
+	"editor",
+	"code",
+	"bot",
+	"me",
+	"socials",
+	"git",
+	"commands",
+	"lesado",
+	"portfolio",
+	"spotify",
 ];
 
 let lesado = 0;
 let f = 0;
+const defaultMsg = `Não entendi o que você quis dizer, digite !comandos. VoHiYo .`;
 
-function handleCommand(command) {
-  const defaultMsg = `Não entendi o que você quis dizer, digite !comandos. VoHiYo .`;
+function handleCommand(com) {
+	const command = com.split("!")[1];
 
-  if (!commands.includes(command)) {
-    return defaultMsg;
-  }
+	if (command) {
+		if (!COMMANDS.includes(command)) {
+			return defaultMsg;
+		}
 
-  if (command) {
-    switch (command) {
-      case "!agua":
-        return `Respira e toma água NotLikeThis`;
-      case "!mod":
-        return `Já deu amor aos mods hoje ? <3`;
-      case "!editor":
-        return `VSCode <3 ou Sublime(para quem ta começando) :p`;
-      case "!extensoes":
-        return `Bracket Pair Colorizer 💅, Cobalt Next 🎨, EditorConfig 🧾, Live Server 🖥, Prettier 🤝, Color Highlight 🎨. `;
-      case "!vscode":
-        return `Minhas configurações do VSCODE: http://dontpad.com/yunovscodeconfigdontchange 👌`;
-      case "!yukka":
-        f++;
-        return `O yuno matou a Yukka ${f} ${f > 1 ? "vezes" : "vez"} hoje. D:`;
-      case "!lesado":
-        lesado++;
+		const commandObj = {
+			water: () => "Respira e toma água NotLikeThis",
+			coffee: () => "Vai um café ? HeyGuys",
+			mod: () => "Já deu amor aos mods hoje ? <3",
+			editor: () => "VSCode",
+			code: () =>
+				"Atom One Dark Theme, Dracula, Color Highlight, Code Spell Checker, EditorConfig, Error Lens, EsLint, GitHub Copilot, gitignore, GitLens, Lorem Ipsum, Material Icon Theme, One Dark Pro, Path Intellisense, Prettier, Rainbow Brackets, vscode-pets, vscode-styled-components",
+			bot: () => {
+				f++;
+				return `O bot já foi chamado ${f} vezes. VoHiYo`;
+			},
+			me: () => "Dev Front-End e Designer UI/UX",
+			socials: () => "https://linktr.ee/yuninho",
+			git: () => "https://github.com/hiimlex",
+			commands: () => `${COMMANDS.map((c) => `!${c}`).join(", ")}`,
+			lesado: () => {
+				lesado++;
+				return `O yuno já foi lesado ${lesado} vezes. VoHiYo`;
+			},
+			portfolio: () => "http://alexalves.me/website",
+			spotify: () =>
+				"https://open.spotify.com/user/22isvg752e4j3bgwpfe32sm6i?si=231b52f9d2f74f49",
+		};
 
-        return `O yuno foi lesado mais de  ${lesado} ${
-          lesado > 1 ? "vezes" : "vez"
-        } `;
-      case "!me":
-        return `HeyGuys Aoba, eu sou o yuno ou álex, programador de programas e tocador de tocagens.`;
-      case "!playlist":
-        return `🎶 https://open.spotify.com/playlist/7Kag7syJeod1N7pRyDp2bh?si=a9ffb9eb3c504cf4 🎶`;
-      case "!sociais":
-        return `👨‍💻 LinkedIn: https://www.linkedin.com/in/alex-rodrigues-83558718b/`;
-      case "!sugestao":
-        return `Para sugerir algo para a Yukka AYAYA didite !add <sugestão>.`;
-      case "!cafe":
-        return `Vamo tomar um café ? 3 minutinhos ☕.`;
-      case "!portfolio":
-        return `👾 Dá uma olhada aqui, tem muita coisa legal, https://hiimlex.github.io/portfolio 👾`;
-
-      case "!git":
-        return `TehePelo é o programas ? https://github.com/hiimlex .`;
-      case "!comandos":
-        const command_list = commands.map((el) => {
-          if (commands.indexOf(el) === 0) {
-            return el;
-          }
-          return " " + el;
-        });
-        return `${command_list} VoHiYo`;
-      default:
-        return defaultMsg;
-    }
-  }
+		if (commandObj[command]) {
+			return commandObj[command]();
+		}
+	}
 }
 
-module.exports = handleCommand;
+module.exports = { handleCommand };

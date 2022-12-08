@@ -1,50 +1,34 @@
 const tmi = require("tmi.js");
 require("dotenv").config();
 
-const commands = require("./commands");
+const { handleCommand } = require("./commands");
 
 const opts = {
-  options: {
-    debug: true
-  },
-  identity: {
-    username: process.env.BOT_USERNAME,
-    password: process.env.OAUTH_TOKEN,
-  },
-  channels: [process.env.CHANNEL_NAME],
-  port: process.env.PORT || 80
+	options: {
+		debug: true,
+	},
+	identity: {
+		username: process.env.BOT_USERNAME,
+		password: process.env.OAUTH_TOKEN,
+	},
+	channels: [process.env.CHANNEL_NAME],
+	port: process.env.PORT || 80,
 };
 
-const suggestions = [];
-
 function onMessageHandler(target, context, msg, self) {
-  if (self || !msg.startsWith("!")) {
-    return;
-  }
+	if (self || !msg.startsWith("!")) {
+		return;
+	}
 
-  const commandName = msg.split(" ")[0];
-  const args = msg.slice(1).split(" ");
+	const commandName = msg.split(" ")[0];
 
-  if (commandName === "add") {
-    args.shift();
+	const message = handleCommand(commandName);
 
-    client.say(`/me ${args.join(" ")} foi sugerido por: ${context.username}.`);
-    return;
-  }
-
-  if (commandName === "cafe") {
-    setTimeout(() => {
-      client.say(target, `Voltamo 😎`);
-    }, 3000);
-  }
-
-  const message = commands(commandName, args);
-
-  client.say(target, message);
+	client.say(target, message);
 }
 
 function onConnectedHandler(target, addr, port) {
-  console.log(`* Connected to ${addr}:${port}`);
+	console.log(`* Connected to ${addr}:${port}`);
 }
 
 const client = new tmi.client(opts);
